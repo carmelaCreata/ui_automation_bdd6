@@ -8,53 +8,40 @@ import utils.Driver;
 import java.util.List;
 
 public class Project04Page {
-
     public Project04Page(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(id = "card-24" )
-    public WebElement card;
-
-    @FindBy(css = "h1[class='is-size-2']")
-    public WebElement inventoryHeader;
-
-    @FindBy(xpath = "//tr[contains(@class, 'DynamicTables_tableHeaders')]")
-    public List<WebElement> tableHeaders;
-
-    @FindBy(css = "tbody tr>td")
-    public List<List<WebElement>> tableRows;
+    @FindBy(css = ".mb-5")
+    public WebElement mainHeading;
 
     @FindBy(id = "add_product_btn")
     public WebElement addProductButton;
 
+    @FindBy(id = "modal_title")
+    public WebElement modalCardTitle;
+
+    @FindBy(css = ".input")
+    public List<WebElement> productDetails;
+
+    @FindBy(css = ".modal label")
+    public List<WebElement> labels;
+
+    @FindBy(id = "submit")
+    public WebElement submitButton;
+
+    @FindBy(css = ".delete")
+    public WebElement closeButton;
+
     @FindBy(id = "total_amount")
     public WebElement totalAmount;
 
-    @FindBy(xpath = "//div[contains(@class, 'modal-card DynamicTables_modal')] ")
-    public WebElement modal;
+    @FindBy(css = "tr > th")
+    public List<WebElement> tableHeading;
 
-    @FindBy(css = "button[class='delete']")
-    public WebElement buttonX;
+    @FindBy(id = "main_heading")
+    public WebElement headingText;
 
-    @FindBy(css = "label[for=\"product_quantity\"]")
-    public WebElement quantityLabel;
-
-    @FindBy(css = "input[id='quantity']")
-    public WebElement quantityInput;
-
-    @FindBy(css = "label[for=\"product_quantity\"]")
-    public WebElement productLabel;
-
-    @FindBy(css = "input[id='product']")
-    public WebElement productInput;
-
-    @FindBy(css = "label[for=\"product_price\"]")
-    public WebElement productPrice;
-
-    @FindBy(css = "input[id='price']")
-    public WebElement productPriceInput;
-
-    @FindBy(css = "button[id='submit']")
-    public WebElement submitButton;
+    @FindBy(css = "table")
+    public WebElement table;
 }
