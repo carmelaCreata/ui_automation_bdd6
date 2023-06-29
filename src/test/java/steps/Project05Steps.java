@@ -7,58 +7,51 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import pages.Project04Page;
 import pages.Project05Page;
 import utils.Driver;
 
-import java.util.Map;
+import java.util.List;
 
 public class Project05Steps {
+
     WebDriver driver;
     Project05Page project05Page;
 
     @Before
     public void setDriver(){
         driver = Driver.getDriver();
-       project05Page = new Project05Page();
+        project05Page = new Project05Page();
     }
-    @Then("the user should see the {string} heading")
-    public void theUserShouldSeeTheHeading(String heading) {
-        Assert.assertEquals(heading, project05Page.header.getText());
-    }
-
-    @Then("the user should see the {string} paragraph")
-    public void theUserShouldSeeTheParagraph(String expectedParagraph) {
-        Assert.assertEquals(expectedParagraph, project05Page.paragraph.getText());
+    @And("the user should see the {string} paragraph")
+    public void theUserShouldSeeTheParagraph(String paragraph) {
+        Assert.assertEquals(paragraph, project05Page.content.getText());
     }
 
-    @Then("the user should see the {string} button is {string}")
-    public void theUserShouldSeeTheButtonIs(String buttonName, String buttonState) {
-        boolean expectedState = buttonState.equalsIgnoreCase("enabled");
-        boolean actualState = false;
-
-        if (buttonName.equalsIgnoreCase("previous")) {
-            Assert.assertFalse(project05Page.previous.isEnabled());
-        } else if (buttonName.equalsIgnoreCase("next")) {
-            Assert.assertTrue(project05Page.next.isEnabled());
-        } else {
-            Assert.fail("Invalid button name: " + buttonName);
-            return;
+    @Then("the user should see the {string} button is disabled")
+    public void theUserShouldSeeTheButtonIsDisabled(String button) {
+        switch (button){
+            case "Previous":
+                Assert.assertFalse(project05Page.previous.isEnabled());
+                break;
+            case "Next":
+                Assert.assertFalse(project05Page.next.isEnabled());
+                break;
+            default:
         }
-
-        Assert.assertEquals(expectedState, actualState);
     }
-    @When("the user clicks on the {string} button")
-    public void theUserClicksOnTheButton(String buttonName) {
-        project05Page.next.click();
+
+    @When("the user clicks on the {string} button till it becomes disabled")
+    public void theUserClicksOnTheButtonTillItBecomesDisabled(String button) {
+        project05Page.clickNextButton();
     }
 
     @Then("the user should see {string} City with the info below and an image")
-    public void theUserShouldSeeCityWithInfoAndImage(String cityName, DataTable dataTable) {
-        Map<String, String> expectedCityInfo = dataTable.asMap(String.class, String.class);
-        Map<String, String> actualCityInfo = project05Page.getCityInfo(cityName);
-        Assert.assertEquals(expectedCityInfo, actualCityInfo);
+    public void the_user_should_see_city_with_the_info_below_and_an_image(String string, DataTable dataTable) {
+        List<String> expectedText = dataTable.asList();
+
+        for (int i = 0; i < expectedText.size(); i++) {
+            Assert.assertTrue(project05Page.cityImage.isDisplayed());
+            Assert.assertEquals(expectedText.get(i), project05Page.cityInfo.get(i).getText());
+        }
     }
-
-
 }

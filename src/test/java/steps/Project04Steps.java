@@ -10,6 +10,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.Project04Page;
+import pages.Project05Page;
 import utils.Driver;
 import utils.TableHandler;
 
@@ -19,6 +20,7 @@ public class Project04Steps {
 
     WebDriver driver;
     Project04Page project04Page;
+    Project05Page project05Page;
 
     @Before
     public void setDriver(){
