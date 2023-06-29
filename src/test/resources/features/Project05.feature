@@ -5,19 +5,19 @@ Feature: Project04 automation
     Given user navigates to "https://techglobal-training.com/frontend/project-5"
 
     Scenario: Test Case 01 - Validate the main content
-      Then the user should see the “Pagination” heading
-      And the user should see the “World City Populations 2022” heading
-      And the user should see the “What are the most populated cities in the world? Here is a list of the top five most populated cities in the world:” paragraph
-
+      Then the user should see the "Pagination" heading
+      And the user should see the "World City Populations 2022" heading
+      And the user should see the "What are the most populated cities in the world? Here is a list of the top five most populated cities in the world:" paragraph
 
     Scenario: Test Case 02 - Validate the Pagination Next/Previous button
-      Then the user should see the “Previous” button is disabled
-      And the user should see the “Next” button is enabled
-      When the user clicks on the “Next” button
-      Then the user should see the “Previous” button is enabled
-      When the user clicks on the “Next” button till it becomes disabled
-      Then the user should see the “Previous” button is enabled
-      And the user should see the “Next” button is disabled
+      Then the user should see the "Previous" button is disabled
+      And the user should see the "Next" button is enabled
+      When the user clicks on the "Next" button
+      Then the user should see the "Previous" button is enabled
+      When the user clicks on the "Next" button till it becomes disabled
+      Then the user should see the "Previous" button is enabled
+      And the user should see the "Next" button is disabled
+
 
 
       Scenario: Test Case 03 - Validate the Pagination Cities content

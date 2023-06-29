@@ -15,34 +15,46 @@ public class Project05Page {
         PageFactory.initElements(Driver.getDriver(), this);
 
     }
-
-    @FindBy(css = "h1[style*='Blue']")
+    @FindBy(css = "h1[class*='is-size-2']")
     public WebElement header;
 
-    @FindBy(id = "#sub_heading")
+    @FindBy(id = "sub_heading")
     public WebElement subHeader;
 
     @FindBy(id = "#content")
     public WebElement paragraph;
 
     @FindBy(id = "#previous")
-    public WebElement prevButton;
+    public WebElement previous;
 
     @FindBy(id = "#next")
-    public WebElement nextButton;
+    public WebElement next;
 
     @FindBy(css = "div.Pagination_pagBodyData__up2c0 > p")
-    public List<WebElement> cityInfo;
+    public Map<String, String> cityInfo;
 
-    public Map<String, String> getCityInfoMap() {
-        Map<String, String> cityInfoMap = new HashMap<>();
+    @FindBy(css = "p[class*='city_info']")
+    public WebElement cityName;
 
-        for (WebElement element : cityInfo) {
-            String attribute = element.getAttribute("class");
-            String value = element.getText();
-            cityInfoMap.put(attribute, value);
-        }
+    @FindBy(css = "p[class*='country_info']")
+    public WebElement country;
 
-        return cityInfoMap;
+    @FindBy(css = "p[class*='population_info']")
+    public WebElement population;
+
+    public Map<String, String> getCityInfo(String cityName) {
+        Map<String, String> cityInfo = new HashMap<>();
+
+        cityInfo.put("City", cityName);
+        cityInfo.put("Country", country.getText());
+        cityInfo.put("Population", population.getText());
+
+        return cityInfo;
     }
+
+
+
+
+
+
 }
